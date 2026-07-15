@@ -127,11 +127,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    @apply bg-background font-sans;
+    overscroll-behavior-y: none; /* no rubber-band gap revealing blank area */
+  }
   body {
     @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
+    overflow-x: hidden; /* never show a horizontal scrollbar */
   }
   h1, h2, h3, h4 {
     @apply font-heading tracking-tight;

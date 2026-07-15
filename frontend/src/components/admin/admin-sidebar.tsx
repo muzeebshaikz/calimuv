@@ -5,6 +5,7 @@ import {
   Image as ImageIcon,
   LayoutDashboard,
   LogOut,
+  Menu,
   MessageSquare,
   Users,
   Dumbbell as ProgramIcon,
@@ -16,8 +17,16 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { logout } from "@/lib/api";
 import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -34,7 +43,7 @@ const links = [
   { href: "/admin/messages", label: "Messages", icon: MessageSquare },
 ];
 
-export function AdminSidebar() {
+function NavList({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const router = useRouter();
 
@@ -44,14 +53,7 @@ export function AdminSidebar() {
   }
 
   return (
-    <aside className="flex h-dvh w-60 shrink-0 flex-col border-r bg-muted/20">
-      <div className="flex h-16 items-center gap-2 border-b px-5 font-bold">
-        <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-          <Dumbbell className="size-4" />
-        </span>
-        {site.name}
-      </div>
-
+    <>
       <nav className="flex-1 space-y-1 overflow-y-auto p-3">
         {links.map((l) => {
           const active =
@@ -62,6 +64,7 @@ export function AdminSidebar() {
             <Link
               key={l.href}
               href={l.href}
+              onClick={onNavigate}
               className={cn(
                 "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors",
                 active
@@ -93,6 +96,52 @@ export function AdminSidebar() {
           <LogOut className="size-4" /> Log out
         </Button>
       </div>
+    </>
+  );
+}
+
+const Brand = () => (
+  <span className="flex items-center gap-2 font-bold">
+    <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
+      <Dumbbell className="size-4" />
+    </span>
+    {site.name}
+  </span>
+);
+
+/** Desktop sidebar — sticky, no page-level nested scroll issues. */
+export function AdminSidebar() {
+  return (
+    <aside className="sticky top-0 hidden h-dvh w-60 shrink-0 flex-col border-r bg-muted/20 lg:flex">
+      <div className="flex h-16 items-center border-b px-5">
+        <Brand />
+      </div>
+      <NavList />
     </aside>
+  );
+}
+
+/** Mobile top bar with a slide-out menu. */
+export function AdminMobileBar() {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="sticky top-0 z-40 flex h-14 items-center justify-between border-b bg-background/90 px-4 backdrop-blur lg:hidden">
+      <Brand />
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetTrigger
+          render={<Button variant="ghost" size="icon" aria-label="Open menu" />}
+        >
+          <Menu className="size-5" />
+        </SheetTrigger>
+        <SheetContent side="left" className="flex w-64 flex-col p-0">
+          <SheetHeader className="h-14 justify-center border-b px-5">
+            <SheetTitle>
+              <Brand />
+            </SheetTitle>
+          </SheetHeader>
+          <NavList onNavigate={() => setOpen(false)} />
+        </SheetContent>
+      </Sheet>
+    </div>
   );
 }
