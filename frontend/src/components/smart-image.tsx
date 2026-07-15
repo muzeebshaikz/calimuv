@@ -2,7 +2,7 @@
 
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -21,6 +21,21 @@ interface SmartImageProps {
  */
 export function SmartImage({ src, alt, className, label }: SmartImageProps) {
   const [failed, setFailed] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const mounted = useRef(false);
+
+  // Reset when the source changes, and (after mount) detect an image that
+  // already failed synchronously — avoids setState-before-mount warnings.
+  useEffect(() => {
+    mounted.current = true;
+    setFailed(false);
+    const img = imgRef.current;
+    if (img && img.complete && img.naturalWidth === 0) setFailed(true);
+    return () => {
+      mounted.current = false;
+    };
+  }, [src]);
+
   const showPlaceholder = !src || failed;
 
   if (showPlaceholder) {
@@ -32,21 +47,25 @@ export function SmartImage({ src, alt, className, label }: SmartImageProps) {
         )}
       >
         <ImageIcon className="size-8 opacity-50" />
-        <span className="px-2 text-center text-xs">
-          {label || "Add image"}
-        </span>
+        <span className="px-2 text-center text-xs">{label || "Add image"}</span>
       </div>
     );
   }
 
   return (
     <Image
+      ref={imgRef}
       src={src}
       alt={alt}
       fill
       sizes="(max-width: 768px) 100vw, 33vw"
+      // Local /public paths (seed placeholders) skip the optimizer so a missing
+      // file doesn't produce a 400 from /_next/image; remote URLs stay optimized.
+      unoptimized={src.startsWith("/")}
       className={cn("object-cover", className)}
-      onError={() => setFailed(true)}
+      onError={() => {
+        if (mounted.current) setFailed(true);
+      }}
     />
   );
 }
