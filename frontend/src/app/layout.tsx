@@ -1,3 +1,4 @@
+import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter, Oswald, Geist_Mono } from "next/font/google";
 
@@ -5,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { site } from "@/lib/site";
 import "./globals.css";
+
+const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
 const inter = Inter({ variable: "--font-sans", subsets: ["latin"] });
 const oswald = Oswald({ variable: "--font-heading", subsets: ["latin"] });
@@ -53,6 +56,7 @@ export default function RootLayout({
           {children}
           <Toaster richColors position="top-center" />
         </ThemeProvider>
+        {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>
   );

@@ -50,3 +50,6 @@ Thumbs.db
 coverage/
 .cache/
 tmp/
+
+# Editor tooling folder (auto-generated locally; not part of the project)
+.claude/

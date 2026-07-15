@@ -57,6 +57,18 @@ class Settings(BaseSettings):
             return [origin.strip() for origin in v.split(",") if origin.strip()]
         return v
 
+    @field_validator("DATABASE_URL", mode="after")
+    @classmethod
+    def _normalize_db_url(cls, v: str) -> str:
+        """Accept a Supabase/Heroku-style URL and force the psycopg driver so
+        the connection string can be pasted verbatim from the provider.
+        """
+        if v.startswith("postgres://"):
+            return "postgresql+psycopg://" + v[len("postgres://") :]
+        if v.startswith("postgresql://"):
+            return "postgresql+psycopg://" + v[len("postgresql://") :]
+        return v
+
     @property
     def is_sqlite(self) -> bool:
         return self.DATABASE_URL.startswith("sqlite")

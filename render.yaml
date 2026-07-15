@@ -1,0 +1,36 @@
+# Render Blueprint for the Calimuv FastAPI backend.
+# In Render: New + → Blueprint → connect this repo. Render reads this file.
+# Then fill the env vars marked `sync: false` in the dashboard.
+
+services:
+  - type: web
+    name: calimuv-api
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install --only-binary=:all: -r requirements.txt
+    # Run DB migrations + ensure the admin/seed exists, then start the server.
+    # (Idempotent: safe to run on every deploy/cold start.)
+    startCommand: alembic upgrade head && python seed.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.12.7"
+      - key: ENVIRONMENT
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: SECRET_KEY
+        generateValue: true          # Render generates a strong secret
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "120"
+      - key: DATABASE_URL
+        sync: false                   # paste Supabase connection string
+      - key: BACKEND_CORS_ORIGINS
+        sync: false                   # your Vercel URL(s), comma-separated
+      - key: FIRST_ADMIN_EMAIL
+        sync: false
+      - key: FIRST_ADMIN_PASSWORD
+        sync: false
+      - key: FIRST_ADMIN_NAME
+        value: Calimuv Admin

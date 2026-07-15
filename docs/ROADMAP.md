@@ -13,8 +13,8 @@ Built step by step. `[x]` done · `[~]` in progress · `[ ]` pending.
 | 7 | Connect frontend ↔ backend | [x] |
 | 8 | Admin dashboard | [x] |
 | 9 | Image uploads | [ ] |
-| 10 | Deployment (Vercel + Render) | [ ] |
-| 11 | SEO (metadata, sitemap, robots.txt) | [x] |
+| 10 | Deployment (Vercel + Render) | [~] code ready — see docs/DEPLOYMENT.md |
+| 11 | SEO (metadata, sitemap, robots.txt) + Analytics | [x] GA wired (set NEXT_PUBLIC_GA_ID) |
 | 12 | Testing | [ ] |
 | 13 | Production optimization | [ ] |
 
