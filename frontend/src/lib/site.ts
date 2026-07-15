@@ -2,24 +2,30 @@
 // Edit these values to rebrand or update links in one place.
 
 export const site = {
-  name: "Calimuv",
-  tagline: "Calisthenics Training Institute",
+  name: "CaliMUV",
+  slogan: "Minimal Power",
+  tagline: "North Bangalore's Premier Calisthenics Institute",
+  marketingTagline: "Build Muscle. Burn Fat. Boost Confidence.",
+  locationBadge: "North Bangalore's Best Calisthenics",
+  venue: "Spark7 Sports Arena",
   description:
-    "Calimuv is a premium calisthenics training institute. Build real strength, master bodyweight skills, and transform with expert coaching.",
+    "CaliMUV — North Bangalore's premier calisthenics training institute at Spark7 Sports Arena, Yelahanka. Build muscle, burn fat, and master bodyweight skills with expert coaching for every level.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 
-  // TODO: replace with real details
   contact: {
-    email: "hello@calimuv.com",
-    phone: "+91 00000 00000",
-    address: "Your Studio Address, City, State",
-    // Google Maps embed URL — replace `q=` with your address or place ID.
+    // TODO: add a real email if you have one
+    email: "calimuv.minimalpower@gmail.com",
+    phone: "+91 99002 83417",
+    address:
+      "Spark7 Sports Arena, Kattigenahalli, Bagalur Main Road, Yelahanka, Bengaluru 560064",
+    locationTagline: "Where Strength meets Community.",
     mapEmbedUrl:
-      "https://www.google.com/maps?q=calisthenics+gym&output=embed",
+      "https://www.google.com/maps?q=Spark7+Sports+Arena+Kattigenahalli+Bagalur+Road+Yelahanka&output=embed",
   },
 
   socials: {
-    instagram: "https://instagram.com/",
+    instagram: "https://instagram.com/calimuv.minimalpower",
+    instagramHandle: "@calimuv.minimalpower",
     youtube: "https://youtube.com/",
     facebook: "https://facebook.com/",
     x: "https://x.com/",

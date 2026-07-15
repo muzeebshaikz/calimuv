@@ -1,10 +1,11 @@
 "use client";
 
-import { Dumbbell, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { LogoMark } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -36,9 +37,7 @@ export default function AdminLoginPage() {
     <div className="grid min-h-dvh place-items-center bg-muted/30 px-4">
       <Card className="w-full max-w-sm p-8">
         <div className="flex flex-col items-center text-center">
-          <span className="grid size-12 place-items-center rounded-xl bg-primary text-primary-foreground">
-            <Dumbbell className="size-6" />
-          </span>
+          <LogoMark className="size-12 drop-shadow-[0_0_14px_var(--brand)]" />
           <h1 className="mt-4 text-2xl font-bold">{site.name} Admin</h1>
           <p className="mt-1 text-sm text-muted-foreground">
             Sign in to manage your website content.

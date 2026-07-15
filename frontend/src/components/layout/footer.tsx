@@ -1,6 +1,7 @@
-import { Dumbbell, Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import Link from "next/link";
 
+import { Logo } from "@/components/brand/logo";
 import { FacebookIcon, InstagramIcon, YoutubeIcon } from "@/components/icons/social";
 import { navLinks, site } from "@/lib/site";
 
@@ -12,14 +13,14 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 md:grid-cols-4 lg:px-8">
         {/* Brand */}
         <div className="md:col-span-1">
-          <Link href="/" className="flex items-center gap-2 font-bold">
-            <span className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-              <Dumbbell className="size-5" />
-            </span>
-            <span className="text-lg">{site.name}</span>
+          <Link href="/" aria-label={`${site.name} home`}>
+            <Logo />
           </Link>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             {site.description}
+          </p>
+          <p className="mt-3 text-sm font-medium text-primary">
+            {site.venue}
           </p>
         </div>
 

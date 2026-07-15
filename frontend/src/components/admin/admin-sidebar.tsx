@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  Dumbbell,
   Image as ImageIcon,
   LayoutDashboard,
   LogOut,
@@ -19,6 +18,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 
+import { Logo } from "@/components/brand/logo";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -28,7 +28,6 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { logout } from "@/lib/api";
-import { site } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -100,14 +99,7 @@ function NavList({ onNavigate }: { onNavigate?: () => void }) {
   );
 }
 
-const Brand = () => (
-  <span className="flex items-center gap-2 font-bold">
-    <span className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground">
-      <Dumbbell className="size-4" />
-    </span>
-    {site.name}
-  </span>
-);
+const Brand = () => <Logo showSubtitle={false} />;
 
 /** Desktop sidebar — sticky, no page-level nested scroll issues. */
 export function AdminSidebar() {

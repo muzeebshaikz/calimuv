@@ -1,6 +1,7 @@
 import { Mail, MapPin, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
+import { InstagramIcon } from "@/components/icons/social";
 import { ContactForm } from "@/components/forms/contact-form";
 import { PageHeader } from "@/components/ui-blocks/page-header";
 import { Section } from "@/components/ui-blocks/section";
@@ -46,7 +47,19 @@ export default function ContactPage() {
                 </span>
                 <span>{site.contact.address}</span>
               </li>
+              <li className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-lg bg-primary/10 text-primary">
+                  <InstagramIcon className="size-5" />
+                </span>
+                <a href={site.socials.instagram} target="_blank" rel="noreferrer" className="hover:text-primary">
+                  {site.socials.instagramHandle}
+                </a>
+              </li>
             </ul>
+
+            <p className="mt-4 text-sm font-medium text-primary">
+              {site.venue} — {site.contact.locationTagline}
+            </p>
 
             <div className="mt-8 overflow-hidden rounded-xl border">
               <iframe

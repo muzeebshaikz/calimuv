@@ -1,16 +1,15 @@
 import { Zap } from "lucide-react";
 
 const SKILLS = [
-  "Muscle-Up",
-  "Front Lever",
-  "Planche",
-  "Handstand",
-  "Human Flag",
-  "Pistol Squat",
-  "Back Lever",
+  "Muscle Up",
   "L-Sit",
-  "One-Arm Pull-Up",
+  "Planche",
+  "Handstand Push-ups",
   "Dragon Flag",
+  "Human Flag",
+  "Piston Squats",
+  "Front Lever",
+  "Back Lever",
 ];
 
 export function SkillsMarquee() {

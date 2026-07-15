@@ -1,10 +1,11 @@
 "use client";
 
-import { Dumbbell, Menu } from "lucide-react";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 
+import { Logo, LogoMark } from "@/components/brand/logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { ButtonLink } from "@/components/ui-blocks/button-link";
@@ -29,11 +30,8 @@ export function Navbar() {
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 font-bold">
-          <span className="grid size-9 place-items-center rounded-lg bg-primary text-primary-foreground">
-            <Dumbbell className="size-5" />
-          </span>
-          <span className="text-lg tracking-tight">{site.name}</span>
+        <Link href="/" aria-label={`${site.name} home`}>
+          <Logo />
         </Link>
 
         {/* Desktop nav */}
@@ -76,7 +74,7 @@ export function Navbar() {
             <SheetContent side="right" className="w-72">
               <SheetHeader>
                 <SheetTitle className="flex items-center gap-2">
-                  <Dumbbell className="size-5 text-primary" />
+                  <LogoMark className="size-6" />
                   {site.name}
                 </SheetTitle>
               </SheetHeader>

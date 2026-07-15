@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, MapPin, Trophy } from "lucide-react";
 
 import {
   Athlete,
@@ -56,10 +56,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm text-primary"
+            className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
           >
-            <Sparkles className="size-4" />
-            {site.tagline}
+            <Trophy className="size-4" />
+            {site.locationBadge}
           </motion.div>
 
           <motion.h1
@@ -80,6 +80,15 @@ export function Hero() {
           >
             Master your bodyweight, unlock impressive skills, and transform your
             physique with expert coaching at {site.name}.
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.25 }}
+            className="mt-4 text-sm font-semibold uppercase tracking-[0.15em] text-primary"
+          >
+            {site.marketingTagline}
           </motion.p>
 
           <motion.div
@@ -119,6 +128,29 @@ export function Hero() {
         >
           {/* halo */}
           <div className="absolute inset-8 rounded-full bg-primary/10 blur-2xl" />
+
+          {/* "North Bangalore's Best" callout */}
+          <Float
+            distance={8}
+            duration={4.5}
+            className="absolute left-1/2 top-0 z-20 -translate-x-1/2"
+          >
+            <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-primary/40 bg-background/70 px-3.5 py-1.5 text-xs font-semibold text-primary shadow-[0_0_30px_-8px_var(--brand)] backdrop-blur">
+              <Trophy className="size-3.5" /> {site.locationBadge}
+            </span>
+          </Float>
+
+          {/* location tag */}
+          <Float
+            distance={10}
+            duration={5.5}
+            delay={0.5}
+            className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2"
+          >
+            <span className="flex items-center gap-1.5 whitespace-nowrap rounded-full border border-border bg-background/70 px-3 py-1 text-xs text-muted-foreground backdrop-blur">
+              <MapPin className="size-3.5 text-primary" /> Yelahanka, Bengaluru
+            </span>
+          </Float>
 
           <Float distance={10} duration={6} className="absolute inset-x-8 top-6 bottom-0">
             <Athlete className="h-full w-full drop-shadow-[0_0_28px_var(--brand)]" />
