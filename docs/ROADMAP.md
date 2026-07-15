@@ -9,12 +9,12 @@ Built step by step. `[x]` done · `[~]` in progress · `[ ]` pending.
 | 3 | Database design (schema, models, Alembic) | [x] |
 | 4 | Backend APIs (FastAPI public endpoints) | [x] |
 | 5 | Authentication (JWT single admin) | [x] |
-| 6 | Frontend UI (Next.js pages) | [~] |
-| 7 | Connect frontend ↔ backend | [ ] |
-| 8 | Admin dashboard | [ ] |
+| 6 | Frontend UI (Next.js pages) | [x] |
+| 7 | Connect frontend ↔ backend | [x] |
+| 8 | Admin dashboard | [x] |
 | 9 | Image uploads | [ ] |
 | 10 | Deployment (Vercel + Render) | [ ] |
-| 11 | SEO (metadata, sitemap, robots.txt) | [ ] |
+| 11 | SEO (metadata, sitemap, robots.txt) | [x] |
 | 12 | Testing | [ ] |
 | 13 | Production optimization | [ ] |
 
