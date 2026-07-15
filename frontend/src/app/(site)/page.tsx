@@ -5,6 +5,7 @@ import { PricingCard } from "@/components/cards/pricing-card";
 import { TestimonialCard } from "@/components/cards/testimonial-card";
 import { TrainerCard } from "@/components/cards/trainer-card";
 import { Hero } from "@/components/home/hero";
+import { SkillsMarquee } from "@/components/home/skills-marquee";
 import { Reveal } from "@/components/motion/reveal";
 import { ButtonLink } from "@/components/ui-blocks/button-link";
 import { Section, SectionHeading } from "@/components/ui-blocks/section";
@@ -16,6 +17,7 @@ export default async function HomePage() {
   return (
     <>
       <Hero />
+      <SkillsMarquee />
 
       {/* Programs */}
       {programs.length > 0 && (

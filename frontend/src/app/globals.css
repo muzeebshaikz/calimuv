@@ -87,40 +87,40 @@
 }
 
 .dark {
-  /* Deep navy background (the second brand colour) */
-  --background: oklch(0.2 0.035 250);
-  --foreground: oklch(0.97 0.01 250);
-  --card: oklch(0.24 0.035 250);
-  --card-foreground: oklch(0.97 0.01 250);
-  --popover: oklch(0.24 0.035 250);
-  --popover-foreground: oklch(0.97 0.01 250);
-  /* Brand: bright green (dominant accent) on navy */
-  --primary: oklch(0.76 0.19 150);
-  --primary-foreground: oklch(0.18 0.03 250);
-  --brand: oklch(0.76 0.19 150);
-  --secondary: oklch(0.28 0.04 250);
-  --secondary-foreground: oklch(0.97 0.01 250);
-  --muted: oklch(0.28 0.04 250);
-  --muted-foreground: oklch(0.72 0.03 250);
-  --accent: oklch(0.31 0.05 250);
-  --accent-foreground: oklch(0.97 0.01 250);
+  /* Deep green-black canvas with fluorescent-green neon accent */
+  --background: oklch(0.16 0.022 165);
+  --foreground: oklch(0.96 0.02 150);
+  --card: oklch(0.2 0.028 168);
+  --card-foreground: oklch(0.96 0.02 150);
+  --popover: oklch(0.19 0.028 168);
+  --popover-foreground: oklch(0.96 0.02 150);
+  /* Brand: fluorescent green */
+  --primary: oklch(0.84 0.24 148);
+  --primary-foreground: oklch(0.16 0.04 165);
+  --brand: oklch(0.84 0.24 148);
+  --secondary: oklch(0.25 0.035 168);
+  --secondary-foreground: oklch(0.96 0.02 150);
+  --muted: oklch(0.24 0.03 168);
+  --muted-foreground: oklch(0.74 0.04 160);
+  --accent: oklch(0.28 0.06 158);
+  --accent-foreground: oklch(0.96 0.02 150);
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.76 0.19 150);
-  --chart-1: oklch(0.76 0.19 150);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.24 0.035 250);
-  --sidebar-foreground: oklch(0.97 0.01 250);
-  --sidebar-primary: oklch(0.76 0.19 150);
-  --sidebar-primary-foreground: oklch(0.18 0.03 250);
-  --sidebar-accent: oklch(0.31 0.05 250);
-  --sidebar-accent-foreground: oklch(0.97 0.01 250);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.76 0.19 150);
+  --border: oklch(0.84 0.18 150 / 14%);
+  --input: oklch(0.84 0.18 150 / 16%);
+  --ring: oklch(0.84 0.24 148);
+  --chart-1: oklch(0.84 0.24 148);
+  --chart-2: oklch(0.65 0.16 160);
+  --chart-3: oklch(0.55 0.12 165);
+  --chart-4: oklch(0.45 0.1 170);
+  --chart-5: oklch(0.35 0.08 172);
+  --sidebar: oklch(0.18 0.026 168);
+  --sidebar-foreground: oklch(0.96 0.02 150);
+  --sidebar-primary: oklch(0.84 0.24 148);
+  --sidebar-primary-foreground: oklch(0.16 0.04 165);
+  --sidebar-accent: oklch(0.28 0.06 158);
+  --sidebar-accent-foreground: oklch(0.96 0.02 150);
+  --sidebar-border: oklch(0.84 0.18 150 / 14%);
+  --sidebar-ring: oklch(0.84 0.24 148);
 }
 
 @layer base {
@@ -136,4 +136,35 @@
   h1, h2, h3, h4 {
     @apply font-heading tracking-tight;
   }
+}
+
+/* Neon helpers (strongest in dark mode) */
+@utility neon-text {
+  text-shadow:
+    0 0 18px color-mix(in oklch, var(--brand) 65%, transparent),
+    0 0 40px color-mix(in oklch, var(--brand) 30%, transparent);
+}
+@utility glow {
+  box-shadow: 0 0 44px -10px color-mix(in oklch, var(--brand) 70%, transparent);
+}
+@utility glow-hover {
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+@utility glow-hover-on {
+  box-shadow: 0 0 40px -12px color-mix(in oklch, var(--brand) 70%, transparent);
+}
+
+/* Slow scrolling marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 26s linear infinite;
+}
+
+/* Animated grid drift for hero backdrop */
+@keyframes grid-drift {
+  from { background-position: 0 0; }
+  to { background-position: 48px 48px; }
 }

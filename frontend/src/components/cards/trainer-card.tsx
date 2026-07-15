@@ -8,7 +8,7 @@ import type { Trainer } from "@/lib/types";
 
 export function TrainerCard({ trainer }: { trainer: Trainer }) {
   return (
-    <Card className="group overflow-hidden pt-0 transition-shadow hover:shadow-lg">
+    <Card className="group overflow-hidden pt-0 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_0_34px_-10px_var(--brand)]">
       <Link href={`/trainers/${trainer.slug}`} className="relative block aspect-[4/5]">
         <SmartImage
           src={trainer.photo_url}

@@ -8,7 +8,7 @@ import type { Program } from "@/lib/types";
 
 export function ProgramCard({ program }: { program: Program }) {
   return (
-    <Card className="group flex flex-col overflow-hidden pt-0 transition-shadow hover:shadow-lg">
+    <Card className="group flex flex-col overflow-hidden pt-0 transition-all duration-300 hover:-translate-y-1 hover:border-primary/40 hover:shadow-[0_0_34px_-10px_var(--brand)]">
       <Link href={`/programs/${program.slug}`} className="relative block aspect-video">
         <SmartImage src={program.image_url} alt={program.title} label="Program image" />
       </Link>
