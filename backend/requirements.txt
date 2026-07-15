@@ -1,0 +1,25 @@
+# Pinned to versions that ship prebuilt wheels for Python 3.14.
+# Install with:  pip install --only-binary=:all: -r requirements.txt
+# (--only-binary avoids source builds, which fail behind corporate SSL proxies.)
+
+# --- Web framework ---
+fastapi==0.139.0
+uvicorn==0.51.0
+python-multipart==0.0.32
+
+# --- Data / ORM ---
+sqlalchemy==2.0.51
+alembic==1.18.5
+
+# --- Validation / settings ---
+pydantic==2.13.4
+pydantic-settings==2.14.2
+email-validator==2.3.0
+
+# --- Auth / security ---
+pyjwt==2.13.0
+bcrypt==5.0.0
+
+# --- Database driver (PostgreSQL / Supabase in production) ---
+# SQLite (local dev) needs no driver — it ships with Python.
+psycopg[binary]==3.3.4
