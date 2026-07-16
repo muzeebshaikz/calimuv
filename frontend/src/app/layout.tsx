@@ -39,6 +39,11 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: { card: "summary_large_image" },
+  // Google Search Console site verification — renders:
+  // <meta name="google-site-verification" content="..." />
+  verification: {
+    google: "FnAvMA2J5BFDHqzfV9A5Jktz2HXkilszAofrYtkiqxg",
+  },
 };
 
 export default function RootLayout({
