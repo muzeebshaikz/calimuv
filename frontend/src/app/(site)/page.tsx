@@ -6,6 +6,7 @@ import { TestimonialCard } from "@/components/cards/testimonial-card";
 import { TrainerCard } from "@/components/cards/trainer-card";
 import { Hero } from "@/components/home/hero";
 import { SkillsMarquee } from "@/components/home/skills-marquee";
+import { VideoShowcase } from "@/components/home/video-showcase";
 import { Reveal } from "@/components/motion/reveal";
 import { ButtonLink } from "@/components/ui-blocks/button-link";
 import { Section, SectionHeading } from "@/components/ui-blocks/section";
@@ -65,6 +66,9 @@ export default async function HomePage() {
         </Section>
       )}
 
+      {/* Video showcase */}
+      <VideoShowcase />
+
       {/* Pricing */}
       {pricing.length > 0 && (
         <Section>
@@ -73,7 +77,7 @@ export default async function HomePage() {
             title="Simple, Transparent Pricing"
             subtitle="Choose the plan that fits your goals. Cancel anytime."
           />
-          <div className="mx-auto mt-12 grid max-w-5xl gap-6 md:grid-cols-3">
+          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
             {pricing.slice(0, 3).map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
                 <PricingCard plan={p} />

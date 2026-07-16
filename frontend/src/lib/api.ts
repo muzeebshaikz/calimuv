@@ -3,6 +3,7 @@
 // - `apiGet` is used by Server Components to read public content (ISR-cached).
 // - Auth + admin mutation helpers run in the browser and attach the JWT.
 
+import * as content from "./content";
 import type {
   Admin,
   FAQ,
@@ -53,27 +54,33 @@ async function safeGet<T>(path: string, fallback: T, revalidate?: number): Promi
   }
 }
 
-export const getHome = () =>
-  safeGet<HomeData>("/home", {
-    founder: null,
-    trainers: [],
-    programs: [],
-    pricing: [],
-    testimonials: [],
-  });
+// Fallbacks use the built-in content so the site is populated even without a
+// live backend. When the backend IS reachable, its data is returned instead.
+export const getHome = () => safeGet<HomeData>("/home", content.homeData);
 
-export const getFounder = () => safeGet<Founder | null>("/founder", null);
-export const getTrainers = () => safeGet<Trainer[]>("/trainers", []);
+export const getFounder = () =>
+  safeGet<Founder | null>("/founder", content.founder);
+export const getTrainers = () => safeGet<Trainer[]>("/trainers", content.trainers);
 export const getTrainer = (slug: string) =>
-  safeGet<Trainer | null>(`/trainers/${slug}`, null);
-export const getPrograms = () => safeGet<Program[]>("/programs", []);
+  safeGet<Trainer | null>(
+    `/trainers/${slug}`,
+    content.trainers.find((t) => t.slug === slug) ?? null
+  );
+export const getPrograms = () => safeGet<Program[]>("/programs", content.programs);
 export const getProgram = (slug: string) =>
-  safeGet<Program | null>(`/programs/${slug}`, null);
-export const getPricing = () => safeGet<Pricing[]>("/pricing", []);
+  safeGet<Program | null>(
+    `/programs/${slug}`,
+    content.programs.find((p) => p.slug === slug) ?? null
+  );
+export const getPricing = () => safeGet<Pricing[]>("/pricing", content.pricing);
 export const getGallery = () => safeGet<GalleryImage[]>("/gallery", []);
-export const getTestimonials = () => safeGet<Testimonial[]>("/testimonials", []);
+export const getTestimonials = () =>
+  safeGet<Testimonial[]>("/testimonials", content.testimonials);
 export const getTransformations = () =>
-  safeGet<Testimonial[]>("/testimonials/transformations", []);
+  safeGet<Testimonial[]>(
+    "/testimonials/transformations",
+    content.testimonials.filter((t) => t.is_transformation)
+  );
 export const getFaqs = () => safeGet<FAQ[]>("/faqs", []);
 
 // ---------------------------------------------------------------------------

@@ -26,7 +26,7 @@ export default async function PricingPage() {
             Pricing plans will be added soon.
           </p>
         ) : (
-          <div className="mx-auto grid max-w-5xl gap-6 md:grid-cols-3">
+          <div className="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
             {plans.map((p, i) => (
               <Reveal key={p.id} delay={i * 0.1}>
                 <PricingCard plan={p} />
