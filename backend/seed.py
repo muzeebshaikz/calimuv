@@ -52,160 +52,165 @@ def seed() -> None:
         if not db.query(Founder).first():
             db.add(
                 Founder(
-                    name="Founder Name",  # TODO: replace
-                    title="Founder & Head Coach",
-                    bio="Placeholder founder bio. Share the story of how Calimuv "
-                    "started and the mission behind it.",
-                    quote="Strength is earned, not given.",
-                    photo_url="/images/founder.jpg",  # TODO: add image
-                    years_experience=10,
+                    name="Mithun, Uday & Vivek",
+                    title="Founders — CaliMUV",
+                    bio="CaliMUV was founded by Mithun, Uday and Vivek with one goal: "
+                    "make world-class calisthenics coaching accessible in North "
+                    "Bangalore. From your first chin-up to advanced skills, the team "
+                    "coaches every member with a personalised, minimal-equipment "
+                    "approach at Spark7 Sports Arena, Yelahanka.",
+                    quote="If the plan doesn't work, change the plan — but never the goal.",
+                    photo_url="/images/founders/mithun.jpg",
+                    years_experience=None,
                     social_links={
-                        "instagram": "https://instagram.com/",
-                        "youtube": "https://youtube.com/",
+                        "instagram": "https://instagram.com/calimuv.minimalpower",
                     },
-                    email="founder@calimuv.com",
-                    phone="+91 00000 00000",
+                    email=None,
+                    phone="+91 99002 83417",
                 )
             )
-            print("  ✓ Founder placeholder created.")
+            print("  ✓ Founder created.")
 
-        # --- Trainers ---
+        # --- Founders / coaching team (Trainers) ---
         if not db.query(Trainer).first():
+            ig = {"instagram": "https://instagram.com/calimuv.minimalpower"}
             db.add_all(
                 [
                     Trainer(
-                        name="Trainer One",
-                        slug="trainer-one",
-                        specialization="Handstands & Balance",
-                        bio="Placeholder trainer bio.",
-                        photo_url="/images/trainers/trainer-one.jpg",
-                        experience_years=6,
-                        certifications=["Certified Calisthenics Coach"],
-                        social_links={"instagram": "https://instagram.com/"},
+                        name="Mithun",
+                        slug="mithun",
+                        specialization="Founder & Head Coach",
+                        bio="Co-founder of CaliMUV and head calisthenics coach. "
+                        "Passionate about helping members unlock their first "
+                        "pull-up and progress to advanced skills.",
+                        photo_url="/images/founders/mithun.jpg",
+                        social_links=ig,
                         display_order=1,
                     ),
                     Trainer(
-                        name="Trainer Two",
-                        slug="trainer-two",
-                        specialization="Strength & Mobility",
-                        bio="Placeholder trainer bio.",
-                        photo_url="/images/trainers/trainer-two.jpg",
-                        experience_years=4,
-                        certifications=["NASM-CPT"],
-                        social_links={"instagram": "https://instagram.com/"},
+                        name="Uday",
+                        slug="uday",
+                        specialization="Founder & Coach",
+                        bio="Co-founder of CaliMUV. Coaches strength and skill "
+                        "progressions for every level.",
+                        photo_url="/images/founders/uday.jpg",
+                        social_links=ig,
                         display_order=2,
+                    ),
+                    Trainer(
+                        name="Vivek",
+                        slug="vivek",
+                        specialization="Founder & Coach",
+                        bio="Co-founder of CaliMUV. Focused on mobility, technique, "
+                        "and sustainable training.",
+                        photo_url="/images/founders/vivek.jpg",
+                        social_links=ig,
+                        display_order=3,
                     ),
                 ]
             )
-            print("  ✓ Trainers placeholders created.")
+            print("  ✓ Founders (trainers) created.")
 
         # --- Programs ---
         if not db.query(Program).first():
             db.add_all(
                 [
                     Program(
-                        title="Beginner Foundations",
-                        slug="beginner-foundations",
-                        short_description="Build your base with fundamental movements.",
-                        description="Placeholder program description.",
+                        title="Kids & Students",
+                        slug="kids-and-students",
+                        short_description="Build discipline & strength (age 6+).",
+                        description="A structured calisthenics program for kids and "
+                        "students that builds discipline, coordination, and real "
+                        "strength through fun, progressive bodyweight training.",
                         level="beginner",
-                        duration="8 weeks",
-                        image_url="/images/programs/beginner.jpg",
-                        features=["3 sessions/week", "Form coaching", "Mobility work"],
+                        duration="Ongoing",
+                        features=["Age group 6+", "Build discipline & strength", "Coach supervised"],
                         display_order=1,
                     ),
                     Program(
-                        title="Advanced Skills",
-                        slug="advanced-skills",
-                        short_description="Master planche, levers and more.",
-                        description="Placeholder program description.",
-                        level="advanced",
-                        duration="12 weeks",
-                        image_url="/images/programs/advanced.jpg",
-                        features=["4 sessions/week", "Skill progressions", "1-on-1 review"],
+                        title="All Levels — Beginner to Advanced",
+                        slug="all-levels",
+                        short_description="From your first pull-up to advanced skills.",
+                        description="Whether you're just starting out or chasing the "
+                        "planche, our all-levels program meets you where you are and "
+                        "progresses you safely to advanced calisthenics skills.",
+                        level="all",
+                        duration="Ongoing",
+                        features=["Beginner to advanced", "Skill progressions", "Personalised coaching"],
                         display_order=2,
+                    ),
+                    Program(
+                        title="Group Classes",
+                        slug="group-classes",
+                        short_description="Train together, grow together.",
+                        description="High-energy group calisthenics classes where you "
+                        "train alongside a supportive community and push each other to "
+                        "level up.",
+                        level="all",
+                        duration="Ongoing",
+                        features=["Community training", "Beginner & intermediate", "Fun & motivating"],
+                        display_order=3,
                     ),
                 ]
             )
-            print("  ✓ Programs placeholders created.")
+            print("  ✓ Programs created.")
 
         # --- Pricing ---
         if not db.query(Pricing).first():
             db.add_all(
                 [
                     Pricing(
-                        plan_name="Monthly",
-                        price=Decimal("2000.00"),
+                        plan_name="Group Training",
+                        price=Decimal("4000.00"),
                         currency="INR",
                         billing_period="monthly",
-                        description="Great to get started.",
-                        features=["All group classes", "App access"],
+                        description="Train with the community.",
+                        features=[
+                            "All group classes",
+                            "Beginner to advanced",
+                            "Coach guidance",
+                            "Access to Spark7 Sports Arena",
+                        ],
                         display_order=1,
                     ),
                     Pricing(
-                        plan_name="Quarterly",
-                        price=Decimal("5000.00"),
+                        plan_name="Personal Training",
+                        price=Decimal("12000.00"),
                         currency="INR",
-                        billing_period="quarterly",
-                        description="Best value — most popular.",
-                        features=["All group classes", "App access", "Monthly assessment"],
+                        billing_period="monthly",
+                        description="1-on-1 coaching for the fastest results.",
+                        features=[
+                            "1-on-1 personal training",
+                            "Fully customised program",
+                            "Priority scheduling",
+                            "Form & technique focus",
+                        ],
                         is_featured=True,
                         display_order=2,
                     ),
-                    Pricing(
-                        plan_name="Yearly",
-                        price=Decimal("18000.00"),
-                        currency="INR",
-                        billing_period="yearly",
-                        description="Commit and save the most.",
-                        features=["Everything in Quarterly", "1-on-1 sessions", "Nutrition guide"],
-                        display_order=3,
-                    ),
                 ]
             )
-            print("  ✓ Pricing placeholders created.")
-
-        # --- Gallery ---
-        if not db.query(GalleryImage).first():
-            db.add_all(
-                [
-                    GalleryImage(
-                        image_url=f"/images/gallery/photo-{i}.jpg",
-                        caption=f"Placeholder photo {i}",
-                        category="training",
-                        display_order=i,
-                    )
-                    for i in range(1, 7)
-                ]
-            )
-            print("  ✓ Gallery placeholders created.")
+            print("  ✓ Pricing created.")
 
         # --- Testimonials (+ transformations) ---
         if not db.query(Testimonial).first():
             db.add_all(
                 [
                     Testimonial(
-                        author_name="Happy Member",
-                        author_context="Member for 1 year",
-                        content="Placeholder testimonial — Calimuv changed my life!",
+                        author_name="CaliMUV Client",
+                        author_context="First chin-up in 3 weeks",
+                        content="Casually unlocked a chin-up — in just 3 weeks! "
+                        "The day I do a pull-up, it's over. Thanks to the CaliMUV team.",
                         rating=5,
-                        photo_url="/images/testimonials/member-1.jpg",
-                        is_featured=True,
-                        display_order=1,
-                    ),
-                    Testimonial(
-                        author_name="Transformed Member",
-                        author_context="Lost 12kg in 6 months",
-                        content="Placeholder transformation story.",
-                        rating=5,
+                        photo_url="/images/testimonials/client-1.jpg",
                         is_transformation=True,
-                        before_image_url="/images/transformations/before-1.jpg",
-                        after_image_url="/images/transformations/after-1.jpg",
+                        after_image_url="/images/testimonials/client-1.jpg",
+                        is_featured=True,
                         display_order=1,
                     ),
                 ]
             )
-            print("  ✓ Testimonials placeholders created.")
+            print("  ✓ Testimonials created.")
 
         # --- FAQs ---
         if not db.query(FAQ).first():
