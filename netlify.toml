@@ -1,0 +1,15 @@
+# Netlify deployment config for the Next.js frontend (Vercel alternative).
+# In Netlify: Add new site → Import from Git → pick this repo. Netlify reads
+# this file, builds the app in `frontend/`, and uses its official Next.js
+# runtime for SSR/ISR. Set the same NEXT_PUBLIC_* env vars in the Netlify UI.
+
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
