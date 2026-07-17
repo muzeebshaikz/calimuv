@@ -2,6 +2,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import type { Metadata } from "next";
 import { Inter, Space_Grotesk, Geist_Mono } from "next/font/google";
 
+import { StructuredData } from "@/components/seo/structured-data";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { site } from "@/lib/site";
@@ -66,6 +67,7 @@ export default function RootLayout({
           <Toaster richColors position="top-center" />
         </ThemeProvider>
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
+        <StructuredData />
       </body>
     </html>
   );
