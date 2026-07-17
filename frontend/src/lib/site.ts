@@ -1,6 +1,16 @@
 // Central site configuration: brand info, navigation, socials, contact.
 // Edit these values to rebrand or update links in one place.
 
+// Resolve the public site URL defensively. If NEXT_PUBLIC_SITE_URL is missing
+// or was mistakenly set to the backend/API URL (a common env mix-up that
+// corrupts the sitemap + canonical tags), ignore it and use the canonical URL.
+const CANONICAL_SITE_URL = "https://calimuv.netlify.app";
+const envSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/+$/, "");
+const SITE_URL =
+  envSiteUrl && !/onrender\.com|\/api(\/|$)/i.test(envSiteUrl)
+    ? envSiteUrl
+    : CANONICAL_SITE_URL;
+
 export const site = {
   name: "CaliMUV",
   slogan: "Minimal Power",
@@ -10,7 +20,7 @@ export const site = {
   venue: "Spark7 Sports Arena",
   description:
     "CaliMUV — North Bangalore's premier calisthenics training institute at Spark7 Sports Arena, Yelahanka. Build muscle, burn fat, and master bodyweight skills with expert coaching for every level.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  url: SITE_URL,
 
   contact: {
     // TODO: add a real email if you have one
