@@ -8,6 +8,7 @@ Replace them with real Cloudinary URLs (Step 9) or drop files into
 frontend/public/images/ with matching names.
 """
 
+import os
 import sys
 from decimal import Decimal
 
@@ -34,6 +35,17 @@ def seed() -> None:
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
+        # --- Optional one-time content reset ---
+        # Set env RESEED=1 to wipe & re-insert content tables (keeps admin,
+        # FAQs, contact messages). Use it once to replace stale seed data, then
+        # set RESEED back to 0 so future restarts don't overwrite admin edits.
+        if os.getenv("RESEED") == "1":
+            print("  RESEED=1 → clearing content tables...")
+            for model in (Testimonial, Pricing, Program, Trainer, GalleryImage, Founder):
+                deleted = db.query(model).delete()
+                print(f"    - {model.__tablename__}: {deleted} rows removed")
+            db.commit()
+
         # --- Admin ---
         if not db.query(AdminUser).first():
             db.add(
